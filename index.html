@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title> let、块级作用域、const、对象</title>
+</head>
+<body>
+	<script>
+		// // let   声明变量   和var用法一样
+		// var 变量的提升    
+		   var num = 10;
+		   let num1 = 20;   //用let声明变量，再声明之前不能调用和访问到变量，
+		                    // 在同一个作用域里边，是不允许在声明同一个变量.
+		   function fn(){
+		    let num1 = 'z';
+		     console.log(num1);
+		   }
+		   console.log(num1);
+		   fn();
+
+		   // // let 声明之前的区域，叫暂时性的死区。
+		   // alert(num1);
+		   // //暂时性的死区
+		   // let num1;
+		   // alert(num1);
+		   // num1 = 10;
+		   // alert(num1);
+
+
+	    // 块级作用域   var不识别块级作用域
+	    {
+	     let num = 10;
+	     console.log(num);
+	    }
+
+
+	   // let num = 'a';
+	   // function fn(){
+	   //  alert(num);   //a   报错
+	   //  if(true){
+	   //      let num = 10;
+	   //      alert(num);  //10
+	   //  }
+	   // }
+	   // fn();
+	   // alert(num);  //a
+
+
+	   var arr = [];
+	   for(i=0;i<10;i++){
+	    arr[i] = function(){
+	        alert(i);
+	    }
+	   }
+	   arr[2]();   //10
+
+	    var arr = [];
+	   for(let i=0;i<10;i++){
+	    arr[i] = function(){
+	        alert(i);
+	    }
+	   }
+	   arr[2]();   //2
+	   arr[5]();   //5
+
+
+	    // const  常量   定值  不允许修改  声明的同时赋值
+	    // 和let很像   识别块级作用域
+	    // 将常量定义到开头  如：习惯性大写PI
+	    const pi = 3.14;
+	    console.log(pi);
+
+	    // 内置顶层函数   在js内部提供了一些函数  自带的   全局作用域
+	    // escape()   unescape()  Number()  String() 
+	    // Boolean() parseInt() parseFloat() isNaN()
+	    // let str = '张三';
+	    // console.log(escape(str));
+	    // console.log(unescape('%u5F20%u4E09'));
+	    // console.log(Number(true));  //1
+	    // console.log(Number(undefined));  //NaN
+	    // console.log(Number('123'));  //123
+	    // console.log(Number(0123));  //83  八进制
+	    // console.log(Number('0123'));  //123
+	    // console.log(Number('123.00'));  //123
+	    // console.log(Number('123.01.2'));  //NaN
+	    // console.log(Number('123px'));  //NaN
+	    // console.log(Number('abcd'));  //NaN
+	    // console.log(Number('true'));  //NaN
+	    // console.log(Number(true));  //1
+	    // console.log(String(true));  //'true'
+	    // console.log(Boolean(''));  //flase
+	    // console.log(parseInt('1234'));  //1234
+	    // console.log(parseInt('0b1111'));  //0
+	    // console.log(parseInt('100px'));  //100
+	    // console.log(parseInt('abc100px200'));  //NaN
+	    // console.log(parseInt('  -1.00px200'));  //-1
+	    // console.log(parseFloat('100.5px'));  //100.5
+	    // console.log(parseFloat('1005px'));  //1005
+	    // console.log(isNaN(false));  //false
+	    // console.log(isNaN('abcd'));  //true
+	    // num =>str str =>num   =>boolean
+
+
+	    var num = 10;
+	    // num == undefined ? 'f' : num;
+	    // num ? num : 'f';
+	    if(num%2){
+	        num = num;
+	    }else{
+	        num = 'f';
+	    }
+	    alert(num);
+	    
+    
+	    // object  对象  堆
+	    // 1.   json
+	    // let person = {}   //对象
+	    
+	    // // 2.   构造函数
+	    function person(){
+
+	    }
+	    let zs = new person();   //对象
+	    let ls = new person();   //对象
+	    //添加属性  方法
+	    //谁 什么 等于
+	    zs.age = 20;
+	    zs.name = '张三';
+	    zs.sex = '男';
+	    zs.say = function(){    //方法
+	        alert(zs.name);
+	    }
+	    // ls.age = 24;
+	    // ls.name = '李四';
+	    // ls.sex = '女';
+	    //访问
+	    //谁 什么
+	    alert(zs.age);
+	    alert(zs.name);
+	    alert(zs.sex);
+	    zs.say();
+
+	    // alert(ls.age);
+	    // alert(ls.name);
+	    // alert(ls.sex);
+	</script>
+</body>
+</html>
